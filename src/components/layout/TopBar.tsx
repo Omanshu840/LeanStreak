@@ -14,7 +14,14 @@ const PAGE_TITLES: Record<string, { title: string; subtitle: string }> = {
 
 export function TopBar() {
   const pathname = usePathname();
-  const current = PAGE_TITLES[pathname] ?? PAGE_TITLES["/home"];
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const stripBasePath = basePath && pathname.startsWith(basePath)
+    ? pathname.slice(basePath.length) || "/"
+    : pathname;
+  const normalizedPath = stripBasePath !== "/" && stripBasePath.endsWith("/")
+    ? stripBasePath.slice(0, -1)
+    : stripBasePath;
+  const current = PAGE_TITLES[normalizedPath] ?? PAGE_TITLES["/home"];
 
   return (
     <header className="sticky top-0 z-30 px-4 pt-4 pb-3 backdrop-blur-sm">
@@ -23,7 +30,7 @@ export function TopBar() {
           <div className="flex items-center gap-3 min-w-0">
             <div className="h-11 w-11 overflow-hidden rounded-2xl border border-[var(--card-border)] shadow-[0_10px_20px_rgba(76,111,187,0.16)]">
               <Image
-                src="/logo.png"
+                src={`${basePath}/logo.png`}
                 alt="LeanStreak logo"
                 width={44}
                 height={44}

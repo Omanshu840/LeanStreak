@@ -15,13 +15,20 @@ const NAV_ITEMS = [
 
 export function BottomNav() {
   const pathname = usePathname();
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const stripBasePath = basePath && pathname.startsWith(basePath)
+    ? pathname.slice(basePath.length) || "/"
+    : pathname;
+  const normalizedPath = stripBasePath !== "/" && stripBasePath.endsWith("/")
+    ? stripBasePath.slice(0, -1)
+    : stripBasePath;
 
   return (
     <nav className="fixed bottom-5 left-0 right-0 z-40 px-4 pointer-events-none">
       <div className="max-w-md mx-auto !rounded-[50] soft-card px-3 py-3 pointer-events-auto">
         <ul className="flex items-center gap-1">
           {NAV_ITEMS.map(({ label, href, icon: Icon }) => {
-            const active = pathname === href;
+            const active = normalizedPath === href || normalizedPath.startsWith(`${href}/`);
             return (
               <li key={href} className="flex-1">
                 <Link

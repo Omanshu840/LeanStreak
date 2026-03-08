@@ -13,18 +13,24 @@ function getOnboardingKey(userId: string) {
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { user, loading } = useSession();
   const pathname = usePathname();
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const stripBasePath = basePath && pathname.startsWith(basePath)
+    ? pathname.slice(basePath.length) || "/"
+    : pathname;
+  const normalizedPath = stripBasePath !== "/" && stripBasePath.endsWith("/")
+    ? stripBasePath.slice(0, -1)
+    : stripBasePath;
   const router = useRouter();
 
   const [checkedOnboarding, setCheckedOnboarding] = useState(false);
   const [onboardingComplete, setOnboardingComplete] = useState(true);
 
   useEffect(() => {
+    if (loading) return;
     if (!user) {
-      const timer = setTimeout(() => {
-        setOnboardingComplete(true);
-        setCheckedOnboarding(true);
-      }, 0);
-      return () => clearTimeout(timer);
+      setOnboardingComplete(true);
+      setCheckedOnboarding(true);
+      return;
     }
 
     const timer = setTimeout(() => {
@@ -42,13 +48,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       setOnboardingComplete(complete);
       setCheckedOnboarding(true);
 
-      if (!complete && pathname !== "/home") {
+      if (!complete && normalizedPath !== "/home") {
         router.replace("/home");
       }
     }, 0);
 
     return () => clearTimeout(timer);
-  }, [pathname, router, user]);
+  }, [loading, normalizedPath, router, user]);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.replace("/login");
+    }
+  }, [loading, router, user]);
 
   useEffect(() => {
     function handleOnboardingUpdate() {
@@ -67,7 +79,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("leanstreak:onboarding-complete", handleOnboardingUpdate);
   }, [user]);
 
-  const hideNavigation = checkedOnboarding && !onboardingComplete && pathname === "/home";
+  const hideNavigation = checkedOnboarding && !onboardingComplete && normalizedPath === "/home";
 
   if (loading || !checkedOnboarding) {
     return (

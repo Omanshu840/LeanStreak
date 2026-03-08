@@ -52,7 +52,7 @@ export function HabitItem({
         </button>
 
         {/* Emoji + name */}
-        <EmojiIcon emoji={habit.emoji} size={18} className="shrink-0 text-[#607195]" />
+        <EmojiIcon emoji={habit.emoji ?? "✨"} size={18} className="shrink-0 text-[#607195]" />
         <p className={cn(
           "flex-1 text-sm font-semibold transition-all",
           habit.completed

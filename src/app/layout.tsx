@@ -14,14 +14,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: "LeanStreak",
   description: "Build healthy habits, one streak at a time.",
-  manifest: "/manifest.webmanifest",
+  manifest: `${BASE_PATH}/manifest.webmanifest`,
   icons: {
-    icon: [{ url: "/favicon.ico", type: "image/x-icon" }, { url: "/logo.png", type: "image/png" }],
-    shortcut: [{ url: "/favicon.ico", type: "image/x-icon" }],
-    apple: [{ url: "/logo.png", type: "image/png" }],
+    icon: [
+      { url: `${BASE_PATH}/favicon.ico`, type: "image/x-icon" },
+      { url: `${BASE_PATH}/icons/icon-192.png`, type: "image/png", sizes: "192x192" },
+      { url: `${BASE_PATH}/icons/icon-512.png`, type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: [{ url: `${BASE_PATH}/favicon.ico`, type: "image/x-icon" }],
+    apple: [{ url: `${BASE_PATH}/icons/apple-touch-icon.png`, sizes: "180x180", type: "image/png" }],
   },
   appleWebApp: {
     capable: true,

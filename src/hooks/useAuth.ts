@@ -9,6 +9,11 @@ export function useAuth() {
   const router   = useRouter();
   const [loading, setLoading] = useState(false);
   const [error,   setError  ] = useState<string | null>(null);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+  function callbackUrl() {
+    return `${location.origin}${basePath}/auth/callback`;
+  }
 
   // ── Sign Up ──────────────────────────────────────────────
   async function signUp(email: string, password: string, fullName: string) {
@@ -20,7 +25,7 @@ export function useAuth() {
       password,
       options: {
         data: { full_name: fullName },
-        emailRedirectTo: `${location.origin}/auth/callback`,
+        emailRedirectTo: callbackUrl(),
       },
     });
 
@@ -52,7 +57,7 @@ export function useAuth() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${location.origin}/auth/callback`,
+        redirectTo: callbackUrl(),
       },
     });
 
