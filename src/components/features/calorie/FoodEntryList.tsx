@@ -1,0 +1,65 @@
+"use client";
+
+import { EmojiIcon } from "@/components/ui";
+import { Trash2 } from "lucide-react";
+import { format } from "date-fns";
+import type { Database } from "@/types/database";
+
+type FoodEntry = Database["public"]["Tables"]["food_entries"]["Row"];
+
+const MEAL_EMOJI: Record<string, string> = {
+  breakfast: "🌅",
+  lunch:     "☀️",
+  dinner:    "🌙",
+  snack:     "🍎",
+};
+
+interface Props {
+  entries: FoodEntry[];
+  onDelete: (id: string) => void;
+}
+
+export function FoodEntryList({ entries, onDelete }: Props) {
+  if (entries.length === 0) {
+    return (
+      <p className="text-center text-sm text-[#8a96b0] py-6">
+        No food logged yet today.
+      </p>
+    );
+  }
+
+  return (
+    <ul className="space-y-2">
+      {entries.map((entry) => (
+        <li
+          key={entry.id}
+          className="flex items-center gap-3 bg-[#f4f7ff] rounded-xl px-3 py-2.5"
+        >
+          <EmojiIcon
+            emoji={MEAL_EMOJI[entry.meal_type ?? "snack"]}
+            size={18}
+            className="text-[#607195]"
+          />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-[#1f2a44] truncate">
+              {entry.description}
+            </p>
+            <p className="text-xs text-[#8a96b0]">
+              {format(new Date(entry.eaten_at), "h:mm a")}
+            </p>
+          </div>
+          <span className="text-sm font-bold text-[#334368] shrink-0">
+            {entry.calories} kcal
+          </span>
+          <button
+            onClick={() => onDelete(entry.id)}
+            className="p-1.5 text-[#a5b0c9] hover:text-red-400 transition-colors rounded-lg
+                       hover:bg-red-50"
+          >
+            <Trash2 size={14} />
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}

@@ -1,26 +1,155 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #dfe5ef;
+  --foreground: #1f2a44;
+  --surface: #f5f7fc;
+  --card: #ffffff;
+  --line: #d8deec;
+  --muted: #6f7890;
+  --accent: #4f7ee6;
+  --accent-soft: #dfe9ff;
+  --success: #27a764;
+  --warn: #ef9d35;
+  --danger: #e15465;
+  --background-glow-1: #f8fbff;
+  --background-glow-2: #dbe7ff;
+  --background-end: #dae2ef;
+  --shell-start: #edf2fb;
+  --shell-end: #e5ecf8;
+  --card-border: #d8e1f2;
+  --card-shadow: 0 12px 28px rgba(49, 76, 130, 0.08);
+  --soft-card-bg: rgba(255, 255, 255, 0.94);
+  --soft-card-border: #d9e0ef;
+  --soft-card-shadow: 0 14px 34px rgba(42, 73, 137, 0.08);
+  --chip-bg: #eef2fb;
+  --chip-border: #d8dff0;
+  --chip-text: #425174;
+  --modal-overlay: rgba(39, 48, 69, 0.45);
+  --modal-start: #ffffff;
+  --modal-end: #f4f8ff;
+  --modal-shadow: 0 24px 46px rgba(42, 68, 118, 0.28);
+  --track: #e5ebf8;
+  --field-bg: #f9fbff;
+  --field-placeholder: #9aa6c0;
+  --field-icon: #96a2be;
+  --focus-ring: #d7e5ff;
+  --scroll-thumb: #c8d2e7;
+  --brand-start: #6996ef;
+  --brand-end: #4b78de;
+  --brand-shadow: 0 10px 24px rgba(75, 120, 222, 0.35);
+  --danger-start: #f27383;
+  --danger-end: #df4f62;
+  --danger-shadow: 0 10px 24px rgba(223, 79, 98, 0.32);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-plus-jakarta);
   --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--line);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 720px at -5% -10%, var(--background-glow-1) 0%, transparent 55%),
+    radial-gradient(1200px 720px at 105% -15%, var(--background-glow-2) 0%, transparent 58%),
+    linear-gradient(180deg, var(--background) 0%, var(--background-end) 100%);
+  color: var(--foreground);
+  font-family: var(--font-plus-jakarta), "Avenir Next", "Segoe UI", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.soft-card {
+  background: var(--soft-card-bg);
+  border: 1px solid var(--soft-card-border);
+  border-radius: 24px;
+  box-shadow: var(--soft-card-shadow);
+}
+
+.soft-chip {
+  border-radius: 999px;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--chip-text);
+}
+
+.section-title {
+  font-size: 1.45rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.section-subtitle {
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 500;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: dark;
+    --background: #0f1524;
+    --foreground: #e8edf9;
+    --surface: #141d31;
+    --card: #192540;
+    --line: #2b3755;
+    --muted: #9aa7c6;
+    --accent: #88aefe;
+    --accent-soft: #233659;
+    --success: #4fcb8d;
+    --warn: #f2b45f;
+    --danger: #f07386;
+    --background-glow-1: #1a2845;
+    --background-glow-2: #17243e;
+    --background-end: #0b111e;
+    --shell-start: #16223b;
+    --shell-end: #121c31;
+    --card-border: #304162;
+    --card-shadow: 0 16px 34px rgba(3, 7, 20, 0.55);
+    --soft-card-bg: rgba(22, 32, 54, 0.9);
+    --soft-card-border: #314264;
+    --soft-card-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+    --chip-bg: #243458;
+    --chip-border: #36486c;
+    --chip-text: #d1dcf6;
+    --modal-overlay: rgba(4, 8, 18, 0.68);
+    --modal-start: #1b2843;
+    --modal-end: #15203a;
+    --modal-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+    --track: #283957;
+    --field-bg: #1c2a46;
+    --field-placeholder: #8fa0c3;
+    --field-icon: #8fa0c3;
+    --focus-ring: #304f84;
+    --scroll-thumb: #364a72;
+    --brand-start: #7da9ff;
+    --brand-end: #5a84e3;
+    --brand-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    --danger-start: #f48c99;
+    --danger-end: #de6678;
+    --danger-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
