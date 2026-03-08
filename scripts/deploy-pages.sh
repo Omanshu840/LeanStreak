@@ -13,42 +13,30 @@ if ! git remote get-url origin >/dev/null 2>&1; then
   echo "Error: git remote 'origin' is not configured."
   exit 1
 fi
+ORIGIN_URL="$(git remote get-url origin)"
 
 echo "Building static site..."
 npm run build
 
 touch "$BUILD_DIR/.nojekyll"
 
-worktree_dir="$(mktemp -d)"
+deploy_dir="$(mktemp -d)"
 cleanup() {
-  git worktree remove "$worktree_dir" --force >/dev/null 2>&1 || true
-  rm -rf "$worktree_dir"
+  rm -rf "$deploy_dir"
 }
 trap cleanup EXIT
 
-if git show-ref --verify --quiet "refs/heads/$BRANCH"; then
-  git worktree add --detach "$worktree_dir" "$BRANCH" >/dev/null
-else
-  git worktree add --detach "$worktree_dir" >/dev/null
-  (
-    cd "$worktree_dir"
-    git checkout --orphan "$BRANCH" >/dev/null
-    git rm -rf . >/dev/null 2>&1 || true
-  )
-fi
-
-rsync -a --delete "$BUILD_DIR"/ "$worktree_dir"/
+rsync -a --delete "$BUILD_DIR"/ "$deploy_dir"/
 
 (
-  cd "$worktree_dir"
+  cd "$deploy_dir"
+  git init >/dev/null
+  git checkout -b "$BRANCH" >/dev/null
   git add -A
 
-  if git diff --cached --quiet; then
-    echo "No changes to deploy."
-    exit 0
-  fi
-
-  git commit -m "Deploy GitHub Pages ($(date -u +'%Y-%m-%d %H:%M:%S UTC'))" >/dev/null
+  git -c user.name="leanstreak-deploy" -c user.email="deploy@localhost" \
+    commit -m "Deploy GitHub Pages ($(date -u +'%Y-%m-%d %H:%M:%S UTC'))" >/dev/null
+  git remote add origin "$ORIGIN_URL"
   git push origin "HEAD:$BRANCH" --force
 )
 
