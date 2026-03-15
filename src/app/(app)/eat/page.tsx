@@ -69,19 +69,22 @@ export default function EatPage() {
         <Card.Header>
           <div className="flex items-center justify-between gap-3">
             <Card.Title>Today&apos;s Food Log</Card.Title>
-            <span className="rounded-full bg-[#edf2fd] px-2 py-0.5 text-xs font-bold text-[#4d638e]">
+            <span className="rounded-full bg-[#edf2fd] px-2 py-0.5 text-xs font-bold text-[#4d638e] dark:bg-[#1c2a46] dark:text-[#b9c9e6]">
               {entries.length} items
             </span>
           </div>
         </Card.Header>
         <Card.Body className="space-y-3">
-          <div className="rounded-xl border border-[#d8e1f2] bg-[#f8faff] px-3 py-2 text-sm text-[#51658f]">
-            Total consumed today: <span className="font-bold text-[#1f2a44]">{consumed} kcal</span>
+          <div className="rounded-xl border border-[#d8e1f2] bg-[#f8faff] px-3 py-2 text-sm text-[#51658f] dark:border-[var(--card-border)] dark:bg-[#1c2a46] dark:text-[#b9c9e6]">
+            Total consumed today:{" "}
+            <span className="font-bold text-[#1f2a44] dark:text-[var(--foreground)]">
+              {consumed} kcal
+            </span>
           </div>
           {loading ? (
             <div className="space-y-2 animate-pulse">
-              <div className="h-12 rounded-xl bg-[#edf2fd]" />
-              <div className="h-12 rounded-xl bg-[#edf2fd]" />
+              <div className="h-12 rounded-xl bg-[#edf2fd] dark:bg-[#1c2a46]" />
+              <div className="h-12 rounded-xl bg-[#edf2fd] dark:bg-[#1c2a46]" />
             </div>
           ) : (
             <FoodEntryList entries={entries} onDelete={removeEntry} />
@@ -105,32 +108,32 @@ export default function EatPage() {
       >
         {historyLoading ? (
           <div className="space-y-2 animate-pulse">
-            <div className="h-14 rounded-xl bg-[#edf2fd]" />
-            <div className="h-14 rounded-xl bg-[#edf2fd]" />
-            <div className="h-14 rounded-xl bg-[#edf2fd]" />
+            <div className="h-14 rounded-xl bg-[#edf2fd] dark:bg-[#1c2a46]" />
+            <div className="h-14 rounded-xl bg-[#edf2fd] dark:bg-[#1c2a46]" />
+            <div className="h-14 rounded-xl bg-[#edf2fd] dark:bg-[#1c2a46]" />
           </div>
         ) : historyDays.length === 0 ? (
-          <p className="py-8 text-center text-sm text-[#8a96b0]">
+          <p className="py-8 text-center text-sm text-[#8a96b0] dark:text-[var(--muted)]">
             No food entries in the last 14 days.
           </p>
         ) : (
           <div className="space-y-4">
             {historyDays.map(([day, dayEntries]) => (
               <div key={day} className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-wide text-[#7a89a8]">{day}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#7a89a8] dark:text-[var(--muted)]">{day}</p>
                 <ul className="space-y-2">
                   {dayEntries.map((entry) => (
                     <li
                       key={entry.id}
-                      className="flex items-center justify-between rounded-xl border border-[#d8e1f2] bg-[#f8faff] px-3 py-2"
+                      className="flex items-center justify-between rounded-xl border border-[#d8e1f2] bg-[#f8faff] px-3 py-2 dark:border-[var(--card-border)] dark:bg-[#1c2a46]"
                     >
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold text-[#1f2a44]">{entry.description}</p>
-                        <p className="text-xs text-[#8a96b0]">
+                        <p className="truncate text-sm font-semibold text-[#1f2a44] dark:text-[var(--foreground)]">{entry.description}</p>
+                        <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)]">
                           {format(new Date(entry.eaten_at), "h:mm a")}
                         </p>
                       </div>
-                      <span className="shrink-0 text-sm font-bold text-[#334368]">{entry.calories} kcal</span>
+                      <span className="shrink-0 text-sm font-bold text-[#334368] dark:text-[#c7d5f0]">{entry.calories} kcal</span>
                     </li>
                   ))}
                 </ul>

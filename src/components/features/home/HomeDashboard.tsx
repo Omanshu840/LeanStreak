@@ -76,7 +76,7 @@ export function HomeDashboard() {
   return (
     <div className="space-y-4 pb-2">
       <Card bordered className="overflow-hidden p-0">
-        <div className="bg-[linear-gradient(130deg,#1c2c4d,#355fbc)] p-5 text-white">
+        <div className="bg-[linear-gradient(130deg,#1c2c4d,#355fbc)] dark:bg-[linear-gradient(130deg,#111a2f,#2a4f93)] p-5 text-white">
           <p className="text-xs font-semibold uppercase tracking-wide text-white/70">Daily Loop</p>
           <h2 className="mt-1 flex items-center gap-2 text-2xl font-extrabold">
             <EmojiIcon emoji="🔥" className="text-white" size={22} />
@@ -104,7 +104,7 @@ export function HomeDashboard() {
               >
                 <div className="flex flex-col items-center gap-1.5">
                   <div className="rounded-lg bg-[var(--card)] p-2.5">
-                    <action.icon size={22} className="text-[#385a9e]" strokeWidth={2.2} />
+                    <action.icon size={22} className="text-[var(--accent)] dark:text-[#a8c5ff]" strokeWidth={2.2} />
                   </div>
                   <p className="text-center text-[11px] font-bold leading-tight text-[var(--foreground)]">
                     {action.shortTitle}
@@ -124,7 +124,7 @@ export function HomeDashboard() {
               <span
                 className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-bold ${
                   dailyResult.goalsMet
-                    ? "bg-green-100 text-green-600"
+                    ? "bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300"
                     : "bg-[var(--surface)] text-[var(--muted)]"
                 }`}
               >
@@ -155,7 +155,7 @@ export function HomeDashboard() {
               className={cn(
                 "flex w-full items-center justify-between rounded-2xl border px-4 py-3 text-left",
                 habit.completed
-                  ? "border-[#9bdfb8] bg-[#ecfff4]"
+                  ? "border-[#9bdfb8] bg-green-100 dark:border-green-700 dark:bg-green-900"
                   : "border-[var(--card-border)] bg-[var(--card)]"
               )}
             >
@@ -163,7 +163,7 @@ export function HomeDashboard() {
                 <EmojiIcon emoji={habit.emoji ?? "✅"} size={14} />
                 {habit.habit_name}
               </span>
-              <span className={cn("text-xs font-bold", habit.completed ? "text-[#2d9e63]" : "text-[var(--muted)]")}>{habit.completed ? "Done" : "Tap"}</span>
+              <span className={cn("text-xs font-bold", habit.completed ? "text-green-600 dark:text-green-300" : "text-[var(--muted)]")}>{habit.completed ? "Done" : "Tap"}</span>
             </button>
           ))}
           {todayHabits.length === 0 && (
@@ -196,7 +196,7 @@ export function HomeDashboard() {
             >
               <div className="flex items-start justify-between">
                 <div className="rounded-xl bg-[var(--card)]/80 p-2 shadow-sm">
-                  <action.icon size={18} className="text-[#385a9e]" strokeWidth={2.2} />
+                  <action.icon size={18} className="text-[#385a9e] dark:text-[#9cb9ff]" strokeWidth={2.2} />
                 </div>
                 <span className="text-[11px] font-bold uppercase tracking-wide text-[var(--muted)]">
                   {action.cta}

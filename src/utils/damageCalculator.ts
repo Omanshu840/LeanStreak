@@ -89,22 +89,22 @@ export const VERDICT_META: Record<DamageVerdict, {
 }> = {
   light:    {
     label: "Light meal",
-    emoji: "success", color: "text-green-700",
-    bg: "bg-green-50", border: "border-green-200",
+    emoji: "success", color: "text-green-700 dark:text-green-200",
+    bg: "bg-green-50 dark:bg-green-950/40", border: "border-green-200 dark:border-green-900/60",
   },
   moderate: {
     label: "Moderate",
-    emoji: "warning-low", color: "text-yellow-700",
-    bg: "bg-yellow-50", border: "border-yellow-200",
+    emoji: "warning-low", color: "text-yellow-700 dark:text-yellow-200",
+    bg: "bg-yellow-50 dark:bg-yellow-950/35", border: "border-yellow-200 dark:border-yellow-900/60",
   },
   heavy:    {
     label: "Heavy meal",
-    emoji: "warning-mid", color: "text-orange-700",
-    bg: "bg-orange-50", border: "border-orange-200",
+    emoji: "warning-mid", color: "text-orange-700 dark:text-orange-200",
+    bg: "bg-orange-50 dark:bg-orange-950/35", border: "border-orange-200 dark:border-orange-900/60",
   },
   extreme:  {
     label: "Damage mode",
-    emoji: "warning-high", color: "text-red-700",
-    bg: "bg-red-50", border: "border-red-200",
+    emoji: "warning-high", color: "text-red-700 dark:text-red-200",
+    bg: "bg-red-50 dark:bg-red-950/40", border: "border-red-200 dark:border-red-900/60",
   },
 };

@@ -25,10 +25,10 @@ export function StreakBadge({ streak, atRisk = false, size = "md" }: Props) {
     <div className={cn(
       "inline-flex items-center gap-2 rounded-2xl font-bold",
       atRisk
-        ? "bg-orange-50 border-2 border-orange-200"
+        ? "bg-orange-50 dark:bg-orange-900 border-2 border-orange-200 dark:border-orange-700"
         : streak > 0
-        ? "bg-green-50 border-2 border-green-200"
-        : "bg-[#edf2fd] border-2 border-[#c7d3ea]",
+        ? "bg-green-50 dark:bg-green-900 border-2 border-green-200 dark:border-green-700"
+        : "bg-[var(--soft-card-bg)] border-2 border-[var(--soft-card-border)]",
       s.wrap
     )}>
       <span className={cn(s.flame, atRisk && "animate-pulse")}>
@@ -36,14 +36,14 @@ export function StreakBadge({ streak, atRisk = false, size = "md" }: Props) {
           emoji={streak === 0 ? "💤" : atRisk ? "⚠️" : "🔥"}
           size={iconSize[size]}
           className={cn(
-            atRisk ? "text-orange-500" : streak > 0 ? "text-green-600" : "text-[#8a96b0]"
+            atRisk ? "text-orange-500" : streak > 0 ? "text-green-600" : "text-[var(--muted)]"
           )}
         />
       </span>
       <div>
         <span className={cn(
           "block font-extrabold leading-none",
-          atRisk ? "text-orange-500" : streak > 0 ? "text-green-600" : "text-[#8a96b0]",
+          atRisk ? "text-orange-500" : streak > 0 ? "text-green-600" : "text-[#8a96b0] dark:text-[var(--muted)]",
           s.number
         )}>
           {streak}
@@ -55,7 +55,7 @@ export function StreakBadge({ streak, atRisk = false, size = "md" }: Props) {
           </span>
         )}
         {!milestone && (
-          <span className={cn("block text-[#8a96b0]", s.label)}>day streak</span>
+          <span className={cn("block text-[var(--muted)] dark:text-[#a8b8df]", s.label)}>day streak</span>
         )}
       </div>
     </div>

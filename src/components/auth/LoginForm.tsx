@@ -39,7 +39,7 @@ export function LoginForm() {
         />
 
         {error && (
-          <p className="text-sm text-red-500 bg-red-50 px-3 py-2 rounded-lg">
+          <p className="text-sm text-red-500 bg-red-50 px-3 py-2 rounded-lg dark:bg-red-950/40 dark:text-red-200">
             {error}
           </p>
         )}
@@ -51,16 +51,16 @@ export function LoginForm() {
 
       {/* Divider */}
       <div className="flex items-center gap-3">
-        <div className="flex-1 h-px bg-[#e4ebfb]" />
-        <span className="text-xs text-[#8a96b0] font-medium">or</span>
-        <div className="flex-1 h-px bg-[#e4ebfb]" />
+        <div className="flex-1 h-px bg-[#e4ebfb] dark:bg-[var(--card-border)]" />
+        <span className="text-xs text-[#8a96b0] dark:text-[var(--muted)] font-medium">or</span>
+        <div className="flex-1 h-px bg-[#e4ebfb] dark:bg-[var(--card-border)]" />
       </div>
 
       <GoogleButton onClick={signInWithGoogle} loading={loading} />
 
-      <p className="text-center text-sm text-[#6e7a96]">
+      <p className="text-center text-sm text-[#6e7a96] dark:text-[var(--muted)]">
         Don&apos;t have an account?{" "}
-        <Link href="/signup" className="text-[#4b78de] font-semibold hover:underline">
+        <Link href="/signup" className="text-[#4b78de] dark:text-[#9cb9ff] font-semibold hover:underline">
           Sign up
         </Link>
       </p>

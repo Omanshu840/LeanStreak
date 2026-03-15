@@ -22,14 +22,14 @@ export function SignupForm() {
 
   if (success) {
     return (
-      <div className="text-center space-y-3 bg-green-50 rounded-2xl p-6">
-        <Mail size={36} className="mx-auto text-[#2f9d64]" />
-        <h2 className="text-lg font-bold text-[#1f2a44]">Check your email</h2>
-        <p className="text-sm text-[#6e7a96]">
+      <div className="text-center space-y-3 bg-green-50 rounded-2xl p-6 dark:bg-green-950/40">
+        <Mail size={36} className="mx-auto text-[#2f9d64] dark:text-green-200" />
+        <h2 className="text-lg font-bold text-[#1f2a44] dark:text-[var(--foreground)]">Check your email</h2>
+        <p className="text-sm text-[#6e7a96] dark:text-[var(--muted)]">
           We sent a confirmation link to <strong>{email}</strong>.
           Click it to activate your account.
         </p>
-        <Link href="/login" className="block text-sm text-[#4b78de] font-semibold hover:underline">
+        <Link href="/login" className="block text-sm text-[#4b78de] dark:text-[#9cb9ff] font-semibold hover:underline">
           Back to login
         </Link>
       </div>
@@ -70,7 +70,7 @@ export function SignupForm() {
         />
 
         {error && (
-          <p className="text-sm text-red-500 bg-red-50 px-3 py-2 rounded-lg">
+          <p className="text-sm text-red-500 bg-red-50 px-3 py-2 rounded-lg dark:bg-red-950/40 dark:text-red-200">
             {error}
           </p>
         )}
@@ -81,16 +81,16 @@ export function SignupForm() {
       </form>
 
       <div className="flex items-center gap-3">
-        <div className="flex-1 h-px bg-[#e4ebfb]" />
-        <span className="text-xs text-[#8a96b0] font-medium">or</span>
-        <div className="flex-1 h-px bg-[#e4ebfb]" />
+        <div className="flex-1 h-px bg-[#e4ebfb] dark:bg-[var(--card-border)]" />
+        <span className="text-xs text-[#8a96b0] dark:text-[var(--muted)] font-medium">or</span>
+        <div className="flex-1 h-px bg-[#e4ebfb] dark:bg-[var(--card-border)]" />
       </div>
 
       <GoogleButton onClick={signInWithGoogle} loading={loading} />
 
-      <p className="text-center text-sm text-[#6e7a96]">
+      <p className="text-center text-sm text-[#6e7a96] dark:text-[var(--muted)]">
         Already have an account?{" "}
-        <Link href="/login" className="text-[#4b78de] font-semibold hover:underline">
+        <Link href="/login" className="text-[#4b78de] dark:text-[#9cb9ff] font-semibold hover:underline">
           Log in
         </Link>
       </p>

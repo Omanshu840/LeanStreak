@@ -49,7 +49,7 @@ export function AddHabitModal({ onAdd, onClose, loading, existingNames }: Props)
     <div className="space-y-4">
 
       {/* Tab switcher */}
-      <div className="flex bg-[#edf2fd] rounded-xl p-1 gap-1">
+      <div className="flex bg-[#edf2fd] rounded-xl p-1 gap-1 dark:bg-[#1c2a46]">
         {(["preset", "custom"] as const).map((t) => (
           <button
             key={t}
@@ -57,8 +57,8 @@ export function AddHabitModal({ onAdd, onClose, loading, existingNames }: Props)
             className={cn(
               "flex-1 py-2 rounded-lg text-sm font-semibold transition-all capitalize",
               tab === t
-                ? "bg-[#ffffff] text-[#1f2a44] shadow-sm"
-                : "text-[#8a96b0] hover:text-[#586887]"
+                ? "bg-[#ffffff] text-[#1f2a44] shadow-sm dark:bg-[var(--card)] dark:text-[var(--foreground)]"
+                : "text-[#8a96b0] hover:text-[#586887] dark:text-[var(--muted)] dark:hover:text-[#c7d5f0]"
             )}
           >
             <span className="inline-flex items-center gap-1.5">
@@ -81,7 +81,7 @@ export function AddHabitModal({ onAdd, onClose, loading, existingNames }: Props)
                   "px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-all shrink-0",
                   activeCategory === cat
                     ? "bg-[linear-gradient(140deg,#6996ef,#4b78de)] text-white shadow-[0_8px_14px_rgba(75,120,222,0.3)]"
-                    : "bg-[#edf2fd] text-[#6e7a96] hover:bg-[#e4ebfb]"
+                    : "bg-[#edf2fd] text-[#6e7a96] hover:bg-[#e4ebfb] dark:bg-[#1c2a46] dark:text-[var(--muted)] dark:hover:bg-[#223255]"
                 )}
               >
                 {cat === "all" ? "All" : CATEGORY_META[cat].label}
@@ -92,7 +92,7 @@ export function AddHabitModal({ onAdd, onClose, loading, existingNames }: Props)
           {/* Preset list */}
           <div className="space-y-2 max-h-64 overflow-y-auto">
             {filtered.length === 0 ? (
-              <p className="text-center text-sm text-[#8a96b0] py-4">
+              <p className="text-center text-sm text-[#8a96b0] dark:text-[var(--muted)] py-4">
                 All habits in this category added!
               </p>
             ) : filtered.map((h) => (
@@ -102,13 +102,14 @@ export function AddHabitModal({ onAdd, onClose, loading, existingNames }: Props)
                 disabled={loading}
                 className="w-full flex items-center gap-3 px-4 py-3 bg-[#f4f7ff]
                            hover:bg-[#eef3ff] hover:border-[#b7cbf1] border border-[#d8e1f2]
-                           rounded-xl text-left transition-all active:scale-98 disabled:opacity-50"
+                           rounded-xl text-left transition-all active:scale-98 disabled:opacity-50
+                           dark:bg-[#1c2a46] dark:hover:bg-[#223255] dark:border-[var(--card-border)] dark:hover:border-[#3a547f]"
               >
-                <EmojiIcon emoji={h.emoji} size={20} className="shrink-0 text-[#607195]" />
+                <EmojiIcon emoji={h.emoji} size={20} className="shrink-0 text-[#607195] dark:text-[#9fb2d8]" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#1f2a44]">{h.habit_name}</p>
+                  <p className="text-sm font-semibold text-[#1f2a44] dark:text-[var(--foreground)]">{h.habit_name}</p>
                   {h.duration && (
-                    <p className="inline-flex items-center gap-1 text-xs text-[#8a96b0]">
+                    <p className="inline-flex items-center gap-1 text-xs text-[#8a96b0] dark:text-[var(--muted)]">
                       <Clock3 size={12} />
                       {h.duration}
                     </p>
@@ -139,7 +140,7 @@ export function AddHabitModal({ onAdd, onClose, loading, existingNames }: Props)
 
           {/* Emoji picker */}
           <div>
-            <p className="text-sm font-semibold text-[#334368] mb-2">Pick an emoji</p>
+            <p className="text-sm font-semibold text-[#334368] dark:text-[#c7d5f0] mb-2">Pick an emoji</p>
             <div className="flex flex-wrap gap-2">
               {EMOJI_OPTIONS.map((em) => (
                 <button
@@ -149,11 +150,11 @@ export function AddHabitModal({ onAdd, onClose, loading, existingNames }: Props)
                   className={cn(
                     "w-10 h-10 text-xl rounded-xl border-2 transition-all",
                     customEmoji === em
-                      ? "border-[#5c8be8] bg-[#e8f0ff]"
-                      : "border-[#d8e1f2] bg-[#f4f7ff] hover:border-[#b8c6e4]"
+                      ? "border-[#5c8be8] bg-[#e8f0ff] dark:border-[#4d6fb2] dark:bg-[#1d2a47]"
+                      : "border-[#d8e1f2] bg-[#f4f7ff] hover:border-[#b8c6e4] dark:border-[var(--card-border)] dark:bg-[#1c2a46] dark:hover:border-[#3a547f]"
                   )}
                 >
-                  <EmojiIcon emoji={em} size={16} className="mx-auto text-[#607195]" />
+                  <EmojiIcon emoji={em} size={16} className="mx-auto text-[#607195] dark:text-[#9fb2d8]" />
                 </button>
               ))}
             </div>

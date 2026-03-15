@@ -17,7 +17,7 @@ export function LateEatingStats({ data, loading }: Props) {
     : 100;
 
   if (loading) {
-    return <div className="h-40 bg-[#edf2fd] rounded-2xl animate-pulse" />;
+    return <div className="h-40 bg-[#edf2fd] rounded-2xl animate-pulse dark:bg-[#1c2a46]" />;
   }
 
   return (
@@ -31,27 +31,27 @@ export function LateEatingStats({ data, loading }: Props) {
 
       {totalEvents === 0 ? (
         <div className="text-center py-6">
-          <EmojiIcon emoji="🏆" size={30} className="mx-auto text-[#406ccc]" />
-          <p className="text-sm font-semibold text-[#334368] mt-2">
+          <EmojiIcon emoji="🏆" size={30} className="mx-auto text-[#406ccc] dark:text-[#9cb9ff]" />
+          <p className="text-sm font-semibold text-[#334368] dark:text-[#c7d5f0] mt-2">
             No late-night urges this week!
           </p>
-          <p className="text-xs text-[#8a96b0]">Keep it up.</p>
+          <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)]">Keep it up.</p>
         </div>
       ) : (
         <>
           {/* Summary stats */}
           <div className="grid grid-cols-3 gap-2">
-            <div className="bg-green-50 rounded-xl p-3 text-center">
+            <div className="bg-green-50 rounded-xl p-3 text-center dark:bg-green-950/40">
               <p className="text-2xl font-extrabold text-green-600">{successRate}%</p>
-              <p className="text-xs text-[#8a96b0] mt-0.5">Resisted</p>
+              <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)] mt-0.5">Resisted</p>
             </div>
-            <div className="bg-[#f4f7ff] rounded-xl p-3 text-center">
-              <p className="text-2xl font-extrabold text-[#334368]">{totalBlocked}</p>
-              <p className="text-xs text-[#8a96b0] mt-0.5">Skipped</p>
+            <div className="bg-[#f4f7ff] rounded-xl p-3 text-center dark:bg-[#1c2a46]">
+              <p className="text-2xl font-extrabold text-[#334368] dark:text-[#c7d5f0]">{totalBlocked}</p>
+              <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)] mt-0.5">Skipped</p>
             </div>
-            <div className="bg-red-50 rounded-xl p-3 text-center">
+            <div className="bg-red-50 rounded-xl p-3 text-center dark:bg-red-950/40">
               <p className="text-2xl font-extrabold text-red-400">{totalIgnored}</p>
-              <p className="text-xs text-[#8a96b0] mt-0.5">Ignored</p>
+              <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)] mt-0.5">Ignored</p>
             </div>
           </div>
 
@@ -83,21 +83,21 @@ export function LateEatingStats({ data, loading }: Props) {
                       />
                     )}
                   </div>
-                  <span className="text-[10px] text-[#8a96b0]">{day.date}</span>
+                  <span className="text-[10px] text-[#8a96b0] dark:text-[var(--muted)]">{day.date}</span>
                 </div>
               );
             })}
           </div>
 
           {/* Legend */}
-          <div className="flex gap-4 pt-1 border-t border-[#e4ebfb]">
+          <div className="flex gap-4 pt-1 border-t border-[#e4ebfb] dark:border-[var(--card-border)]">
             <div className="flex items-center gap-1.5">
               <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
-              <span className="text-xs text-[#6e7a96]">Skipped eating</span>
+              <span className="text-xs text-[#6e7a96] dark:text-[var(--muted)]">Skipped eating</span>
             </div>
             <div className="flex items-center gap-1.5">
               <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-              <span className="text-xs text-[#6e7a96]">Ate anyway</span>
+              <span className="text-xs text-[#6e7a96] dark:text-[var(--muted)]">Ate anyway</span>
             </div>
           </div>
         </>

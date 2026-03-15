@@ -61,13 +61,13 @@ export function FoodEntryForm({ onAdd, onClose, loading }: Props) {
             className={`flex flex-col items-center py-2 rounded-xl text-xs font-semibold transition-all
               ${mealType === value
                 ? "bg-[linear-gradient(140deg,#6996ef,#4b78de)] text-white shadow-[0_8px_14px_rgba(75,120,222,0.3)]"
-                : "bg-[#edf2fd] text-[#6e7a96] hover:bg-[#e4ebfb]"
+                : "bg-[#edf2fd] text-[#6e7a96] hover:bg-[#e4ebfb] dark:bg-[#1c2a46] dark:text-[var(--muted)] dark:hover:bg-[#223255]"
               }`}
           >
             <EmojiIcon
               emoji={emoji}
               size={16}
-              className={mealType === value ? "text-white" : "text-[#607195]"}
+              className={mealType === value ? "text-white" : "text-[#607195] dark:text-[#9fb2d8]"}
             />
             {label}
           </button>
@@ -76,7 +76,7 @@ export function FoodEntryForm({ onAdd, onClose, loading }: Props) {
 
       {/* Quick-add chips */}
       <div>
-        <p className="text-xs text-[#8a96b0] mb-2 font-medium">QUICK ADD</p>
+        <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)] mb-2 font-medium">QUICK ADD</p>
         <div className="flex flex-wrap gap-2">
           {QUICK_FOODS.map(({ label, calories: cal }) => (
             <button
@@ -84,7 +84,8 @@ export function FoodEntryForm({ onAdd, onClose, loading }: Props) {
               key={label}
               onClick={() => applyQuick(label, cal)}
               className="px-3 py-1 bg-[#edf2fd] text-[#586887] rounded-full text-xs
-                         font-semibold hover:bg-[#e4ebfb] transition-all active:scale-95"
+                         font-semibold hover:bg-[#e4ebfb] transition-all active:scale-95
+                         dark:bg-[#1c2a46] dark:text-[var(--muted)] dark:hover:bg-[#223255]"
             >
               {label} · {cal}
             </button>

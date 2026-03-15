@@ -25,7 +25,7 @@ export function SetBudgetForm({ currentBudget, onSave, onClose, loading }: Props
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-[#6e7a96]">
+      <p className="text-sm text-[#6e7a96] dark:text-[var(--muted)]">
         Set your daily calorie limit. 1500–2000 kcal works well for most weight loss goals.
       </p>
 
@@ -38,7 +38,7 @@ export function SetBudgetForm({ currentBudget, onSave, onClose, loading }: Props
             className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-all
               ${String(p) === value
                 ? "bg-[linear-gradient(140deg,#6996ef,#4b78de)] text-white shadow-[0_8px_14px_rgba(75,120,222,0.3)]"
-                : "bg-[#edf2fd] text-[#586887] hover:bg-[#e4ebfb]"
+                : "bg-[#edf2fd] text-[#586887] hover:bg-[#e4ebfb] dark:bg-[#1c2a46] dark:text-[var(--muted)] dark:hover:bg-[#223255]"
               }`}
           >
             {p}

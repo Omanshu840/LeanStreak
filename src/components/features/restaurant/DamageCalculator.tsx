@@ -63,7 +63,7 @@ export function DamageCalculator() {
 
       {/* Category quick-filter */}
       <div>
-        <p className="text-xs font-semibold text-[#8a96b0] mb-2 uppercase tracking-wide">
+        <p className="text-xs font-semibold text-[#8a96b0] dark:text-[var(--muted)] mb-2 uppercase tracking-wide">
           Browse by category
         </p>
         <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
@@ -80,10 +80,10 @@ export function DamageCalculator() {
                           text-xs font-semibold whitespace-nowrap shrink-0 transition-all
                 ${activeCategory === key
                   ? "bg-[linear-gradient(140deg,#6996ef,#4b78de)] text-white shadow-[0_8px_16px_rgba(75,120,222,0.3)]"
-                  : "bg-[#edf2fd] text-[#6e7a96] hover:bg-[#e4ebfb]"
+                  : "bg-[#edf2fd] text-[#6e7a96] hover:bg-[#e4ebfb] dark:bg-[#1c2a46] dark:text-[var(--muted)] dark:hover:bg-[#223255]"
                 }`}
             >
-              <EmojiIcon emoji={emoji} size={12} className={activeCategory === key ? "text-white" : "text-[#607195]"} />
+              <EmojiIcon emoji={emoji} size={12} className={activeCategory === key ? "text-white" : "text-[#607195] dark:text-[#9fb2d8]"} />
               {label}
             </button>
           ))}
@@ -98,11 +98,12 @@ export function DamageCalculator() {
             onClick={() => addFood(food)}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-[#edf2fd]
                        hover:bg-[#e4ebfb] rounded-full text-xs font-semibold
-                       text-[#586887] transition-all active:scale-95"
+                       text-[#586887] transition-all active:scale-95
+                       dark:bg-[#1c2a46] dark:text-[var(--muted)] dark:hover:bg-[#223255]"
           >
-            <EmojiIcon emoji={food.emoji} size={12} className="text-[#607195]" />
+            <EmojiIcon emoji={food.emoji} size={12} className="text-[#607195] dark:text-[#9fb2d8]" />
             <span>{food.name}</span>
-            <span className="text-[#8a96b0]">{food.calories}</span>
+            <span className="text-[#8a96b0] dark:text-[var(--muted)]">{food.calories}</span>
           </button>
         ))}
       </div>
@@ -120,7 +121,7 @@ export function DamageCalculator() {
           variant="ghost"
           fullWidth
           onClick={() => setSelected([])}
-          className="text-[#8a96b0] hover:text-red-400"
+          className="text-[#8a96b0] hover:text-red-400 dark:text-[var(--muted)] dark:hover:text-red-300"
         >
           Clear all
         </Button>

@@ -14,6 +14,7 @@ export function GoogleButton({ loading, className, ...props }: GoogleButtonProps
         "bg-[#ffffff] border border-[#d8e1f2] rounded-2xl",
         "text-sm font-semibold text-[#334368]",
         "hover:bg-[#f4f7ff] active:scale-95 transition-all duration-150",
+        "dark:bg-[var(--card)] dark:border-[var(--card-border)] dark:text-[#c7d5f0] dark:hover:bg-[#1c2a46]",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         "shadow-sm",
         className

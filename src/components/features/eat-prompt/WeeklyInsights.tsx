@@ -15,10 +15,10 @@ interface Props {
 const REASON_META: {
   key: EatReason; label: string; emoji: string; color: string; bg: string
 }[] = [
-  { key: "hungry",   label: "Hungry",   emoji: "😋", color: "bg-green-500",  bg: "bg-green-50"  },
-  { key: "bored",    label: "Bored",    emoji: "😴", color: "bg-blue-400",   bg: "bg-blue-50"   },
-  { key: "stressed", label: "Stressed", emoji: "😰", color: "bg-orange-400", bg: "bg-orange-50" },
-  { key: "craving",  label: "Craving",  emoji: "🍫", color: "bg-purple-400", bg: "bg-purple-50" },
+  { key: "hungry",   label: "Hungry",   emoji: "😋", color: "bg-green-500",  bg: "bg-green-50 dark:bg-green-950/40"  },
+  { key: "bored",    label: "Bored",    emoji: "😴", color: "bg-blue-400",   bg: "bg-blue-50 dark:bg-blue-950/35"   },
+  { key: "stressed", label: "Stressed", emoji: "😰", color: "bg-orange-400", bg: "bg-orange-50 dark:bg-orange-950/35" },
+  { key: "craving",  label: "Craving",  emoji: "🍫", color: "bg-purple-400", bg: "bg-purple-50 dark:bg-purple-950/35" },
 ];
 
 export function WeeklyInsights({ data, loading, onBack, showBack = true }: Props) {
@@ -41,7 +41,7 @@ export function WeeklyInsights({ data, loading, onBack, showBack = true }: Props
     return (
       <div className="space-y-3 animate-pulse">
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="h-16 bg-[#edf2fd] rounded-2xl" />
+          <div key={i} className="h-16 bg-[#edf2fd] rounded-2xl dark:bg-[#1c2a46]" />
         ))}
       </div>
     );
@@ -51,11 +51,11 @@ export function WeeklyInsights({ data, loading, onBack, showBack = true }: Props
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="inline-flex items-center gap-1.5 text-xl font-bold text-[#1f2a44]">
+          <h2 className="inline-flex items-center gap-1.5 text-xl font-bold text-[#1f2a44] dark:text-[var(--foreground)]">
             Weekly Patterns
             <BarChart3 size={18} />
           </h2>
-          <p className="text-xs text-[#8a96b0] mt-0.5">Last 7 days</p>
+          <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)] mt-0.5">Last 7 days</p>
         </div>
         {showBack && onBack && (
           <Button variant="ghost" size="sm" onClick={onBack}>
@@ -69,8 +69,8 @@ export function WeeklyInsights({ data, loading, onBack, showBack = true }: Props
 
       {totalChecks === 0 ? (
         <Card bordered className="text-center py-8">
-          <EmojiIcon emoji="🌱" size={30} className="mx-auto text-[#607195]" />
-          <p className="text-sm text-[#6e7a96] mt-2">
+          <EmojiIcon emoji="🌱" size={30} className="mx-auto text-[#607195] dark:text-[#9fb2d8]" />
+          <p className="text-sm text-[#6e7a96] dark:text-[var(--muted)] mt-2">
             No data yet. Use &quot;Mindful pre eating check&quot; before your meals.
           </p>
         </Card>
@@ -79,24 +79,24 @@ export function WeeklyInsights({ data, loading, onBack, showBack = true }: Props
           {/* Summary stat cards */}
           <div className="grid grid-cols-3 gap-2">
             <Card bordered padded={false} className="p-3 text-center">
-              <p className="text-2xl font-bold text-[#1f2a44]">{totalChecks}</p>
-              <p className="text-xs text-[#8a96b0] mt-0.5">Total checks</p>
+              <p className="text-2xl font-bold text-[#1f2a44] dark:text-[var(--foreground)]">{totalChecks}</p>
+              <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)] mt-0.5">Total checks</p>
             </Card>
             <Card bordered padded={false} className="p-3 text-center">
               <p className="text-2xl font-bold text-green-500">{totalHungry}</p>
-              <p className="text-xs text-[#8a96b0] mt-0.5">Truly hungry</p>
+              <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)] mt-0.5">Truly hungry</p>
             </Card>
             <Card bordered padded={false} className="p-3 text-center">
               <p className="text-2xl font-bold text-orange-400">{totalNonHungry}</p>
-              <p className="text-xs text-[#8a96b0] mt-0.5">Impulse urges</p>
+              <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)] mt-0.5">Impulse urges</p>
             </Card>
           </div>
 
           {/* Insight callout */}
           {totalNonHungry > 0 && (
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl px-4 py-3">
-              <p className="flex items-center gap-1.5 text-sm font-semibold text-amber-700">
-                <EmojiIcon emoji="💡" size={14} className="text-amber-700" />
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl px-4 py-3 dark:bg-amber-950/40 dark:border-amber-900/60">
+              <p className="flex items-center gap-1.5 text-sm font-semibold text-amber-700 dark:text-amber-200">
+                <EmojiIcon emoji="💡" size={14} className="text-amber-700 dark:text-amber-200" />
                 Your top non-hunger trigger this week is{" "}
                 <span className="capitalize">{topReason[0]}</span> ({topReason[1]}x).
               </p>
@@ -128,17 +128,17 @@ export function WeeklyInsights({ data, loading, onBack, showBack = true }: Props
                       ) : null
                     )}
                   </div>
-                  <span className="text-[10px] text-[#8a96b0] font-medium">{day.date}</span>
+                  <span className="text-[10px] text-[#8a96b0] dark:text-[var(--muted)] font-medium">{day.date}</span>
                 </div>
               ))}
             </div>
 
             {/* Legend */}
-            <div className="flex flex-wrap gap-3 mt-3 pt-3 border-t border-[#e4ebfb]">
+            <div className="flex flex-wrap gap-3 mt-3 pt-3 border-t border-[#e4ebfb] dark:border-[var(--card-border)]">
               {REASON_META.map(({ key, label, emoji, color }) => (
                 <div key={key} className="flex items-center gap-1.5">
                   <div className={`w-2.5 h-2.5 rounded-full ${color}`} />
-                  <span className="inline-flex items-center gap-1 text-xs text-[#6e7a96]">
+                  <span className="inline-flex items-center gap-1 text-xs text-[#6e7a96] dark:text-[var(--muted)]">
                     <EmojiIcon emoji={emoji} size={11} />
                     {label}
                   </span>
@@ -154,13 +154,13 @@ export function WeeklyInsights({ data, loading, onBack, showBack = true }: Props
               const pct     = totalChecks > 0 ? Math.round((total / totalChecks) * 100) : 0;
               return (
                 <div key={key} className={`flex items-center gap-3 px-4 py-3 rounded-xl ${bg}`}>
-                  <EmojiIcon emoji={emoji} size={16} className="text-[#607195]" />
+                  <EmojiIcon emoji={emoji} size={16} className="text-[#607195] dark:text-[#9fb2d8]" />
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-semibold text-[#334368]">{label}</span>
-                      <span className="text-xs text-[#8a96b0]">{total}x · {pct}%</span>
+                      <span className="text-sm font-semibold text-[#334368] dark:text-[#c7d5f0]">{label}</span>
+                      <span className="text-xs text-[#8a96b0] dark:text-[var(--muted)]">{total}x · {pct}%</span>
                     </div>
-                    <div className="h-1.5 bg-[#ffffff] rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-[#ffffff] rounded-full overflow-hidden dark:bg-[#223255]">
                       <div
                         className={`h-full ${color} rounded-full transition-all duration-500`}
                         style={{ width: `${pct}%` }}

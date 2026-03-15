@@ -33,7 +33,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               "w-full rounded-2xl border border-[var(--card-border)] bg-[var(--field-bg)] px-4 py-3 text-sm text-[var(--foreground)]",
               "placeholder:text-[var(--field-placeholder)] outline-none transition",
               "focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--focus-ring)]",
-              error && "border-[#ef8694] focus:border-[#ef8694] focus:ring-[#ffd9de]",
+              error && "border-[#ef8694] focus:border-[#ef8694] focus:ring-[#ffd9de] dark:border-[#f48c99] dark:focus:border-[#f48c99] dark:focus:ring-[#7a2f3b]",
               leftIcon && "pl-10",
               className
             )}
@@ -42,7 +42,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {hint && !error && <p className="text-xs text-[var(--muted)]">{hint}</p>}
-        {error && <p className="text-xs text-[#df5367]">{error}</p>}
+        {error && <p className="text-xs text-[#df5367] dark:text-[#f48c99]">{error}</p>}
       </div>
     );
   }

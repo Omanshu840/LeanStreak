@@ -21,8 +21,8 @@ export function HabitItem({
     <div className={cn(
       "rounded-2xl border-2 p-4 transition-all duration-200",
       habit.completed
-        ? "bg-green-50 border-green-200"
-        : "bg-[#ffffff] border-[#d8e1f2]"
+        ? "bg-green-50 border-green-200 dark:bg-green-950/40 dark:border-green-900/60"
+        : "bg-[#ffffff] border-[#d8e1f2] dark:bg-[var(--card)] dark:border-[var(--card-border)]"
     )}>
       <div className="flex items-center gap-3">
 
@@ -35,11 +35,11 @@ export function HabitItem({
             "transition-all duration-200 active:scale-90 shrink-0",
             habit.completed
               ? "bg-green-500 border-green-500 text-white"
-              : "border-[#bcc8e0] hover:border-[#6f98eb] bg-[#ffffff]"
+              : "border-[#bcc8e0] hover:border-[#6f98eb] bg-[#ffffff] dark:border-[#3a4f73] dark:hover:border-[#5c86d6] dark:bg-[var(--card)]"
           )}
         >
           {isToggling ? (
-            <svg className="animate-spin h-3.5 w-3.5 text-[#8a96b0]" viewBox="0 0 24 24" fill="none">
+            <svg className="animate-spin h-3.5 w-3.5 text-[#8a96b0] dark:text-[var(--muted)]" viewBox="0 0 24 24" fill="none">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
             </svg>
@@ -52,12 +52,12 @@ export function HabitItem({
         </button>
 
         {/* Emoji + name */}
-        <EmojiIcon emoji={habit.emoji ?? "✨"} size={18} className="shrink-0 text-[#607195]" />
+        <EmojiIcon emoji={habit.emoji ?? "✨"} size={18} className="shrink-0 text-[#607195] dark:text-[#9fb2d8]" />
         <p className={cn(
           "flex-1 text-sm font-semibold transition-all",
           habit.completed
             ? "text-green-700 line-through decoration-green-300"
-            : "text-[#1f2a44]"
+            : "text-[#1f2a44] dark:text-[var(--foreground)]"
         )}>
           {habit.habit_name}
         </p>
@@ -66,15 +66,15 @@ export function HabitItem({
         <button
           onClick={() => onDelete(habit.id)}
           className="p-1.5 text-[#a5b0c9] hover:text-red-400 hover:bg-red-50
-                     rounded-lg transition-all shrink-0"
+                     rounded-lg transition-all shrink-0 dark:text-[var(--muted)] dark:hover:text-red-300 dark:hover:bg-red-950/40"
         >
           <Trash2 size={14} />
         </button>
       </div>
 
       {habit.completed && (
-        <div className="mt-3 rounded-xl border border-green-200 bg-white/80 px-3 py-2 pl-11">
-          <p className="text-xs font-semibold text-green-700">Nice work! Habit completed.</p>
+        <div className="mt-3 rounded-xl border border-green-200 bg-white/80 px-3 py-2 pl-11 dark:border-green-900/60 dark:bg-[#1b2843]/80">
+          <p className="text-xs font-semibold text-green-700 dark:text-green-200">Nice work! Habit completed.</p>
         </div>
       )}
 
@@ -86,9 +86,9 @@ export function HabitItem({
               "w-5 h-5 rounded-full transition-all",
               weekMap[date]
                 ? "bg-green-500 shadow-sm"
-                : "bg-[#edf2fd]"
+                : "bg-[#edf2fd] dark:bg-[#1c2a46]"
             )} />
-            <span className="text-[9px] text-[#a5b0c9] font-medium">{label[0]}</span>
+            <span className="text-[9px] text-[#a5b0c9] dark:text-[var(--muted)] font-medium">{label[0]}</span>
           </div>
         ))}
       </div>

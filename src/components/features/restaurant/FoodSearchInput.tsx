@@ -54,24 +54,26 @@ export function FoodSearchInput({ onSelect }: Props) {
       {showDropdown && (
         <ul className="absolute top-full left-0 right-0 z-30 mt-1
                         bg-[#ffffff] border border-[#d8e1f2] rounded-2xl shadow-lg
+                        dark:bg-[var(--card)] dark:border-[var(--card-border)]
                         overflow-hidden max-h-64 overflow-y-auto">
           {results.map((food) => (
             <li key={food.id}>
-              <button
-                onMouseDown={() => handleSelect(food)}   // mousedown fires before blur
-                className="w-full flex items-center gap-3 px-4 py-3
-                           hover:bg-[#f4f7ff] transition-colors text-left"
-              >
-                <EmojiIcon emoji={food.emoji} size={20} className="shrink-0 text-[#607195]" />
+                <button
+                  onMouseDown={() => handleSelect(food)}   // mousedown fires before blur
+                  className="w-full flex items-center gap-3 px-4 py-3
+                           hover:bg-[#f4f7ff] transition-colors text-left
+                           dark:hover:bg-[#1c2a46]"
+                >
+                <EmojiIcon emoji={food.emoji} size={20} className="shrink-0 text-[#607195] dark:text-[#9fb2d8]" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-[#1f2a44]">{food.name}</p>
-                  <p className="text-xs text-[#8a96b0]">{food.servingLabel}</p>
+                  <p className="text-sm font-semibold text-[#1f2a44] dark:text-[var(--foreground)]">{food.name}</p>
+                  <p className="text-xs text-[#8a96b0] dark:text-[var(--muted)]">{food.servingLabel}</p>
                 </div>
                 <div className="flex flex-col items-end gap-0.5 shrink-0">
-                  <span className="text-sm font-bold text-[#334368]">
+                  <span className="text-sm font-bold text-[#334368] dark:text-[#c7d5f0]">
                     {food.calories} kcal
                   </span>
-                  <span className="inline-flex items-center gap-1 text-[10px] text-[#8a96b0]">
+                  <span className="inline-flex items-center gap-1 text-[10px] text-[#8a96b0] dark:text-[var(--muted)]">
                     <EmojiIcon emoji={CATEGORY_META[food.category].emoji} size={10} />
                     {CATEGORY_META[food.category].label}
                   </span>
@@ -84,8 +86,9 @@ export function FoodSearchInput({ onSelect }: Props) {
 
       {focused && query.length > 0 && results.length === 0 && (
         <div className="absolute top-full left-0 right-0 z-30 mt-1
-                        bg-[#ffffff] border border-[#d8e1f2] rounded-2xl shadow-lg px-4 py-3">
-          <p className="text-sm text-[#8a96b0]">No results for &quot;{query}&quot;</p>
+                        bg-[#ffffff] border border-[#d8e1f2] rounded-2xl shadow-lg px-4 py-3
+                        dark:bg-[var(--card)] dark:border-[var(--card-border)]">
+          <p className="text-sm text-[#8a96b0] dark:text-[var(--muted)]">No results for &quot;{query}&quot;</p>
         </div>
       )}
     </div>
